@@ -4,7 +4,7 @@ import React from 'react';
 
 const SearchBar = () => {
   return (
-    <View>
+    <View style={styles.background}>
       <Text>SearchBar</Text>
     </View>
   );
@@ -12,4 +12,12 @@ const SearchBar = () => {
 
 export default SearchBar;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  // 92 makes SearchBar grey and rounded
+  background: {
+    backgroundColor: '#f0eeee',
+    height: 50,
+    borderRadius: 5,
+    marginHorizontal: 15,
+  },
+});
