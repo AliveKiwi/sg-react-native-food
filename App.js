@@ -9,6 +9,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      {/* 90 configured Stack.Navigator */}
       <Stack.Navigator>
         <Stack.Screen name="Business Search" component={SearchScreen} />
       </Stack.Navigator>

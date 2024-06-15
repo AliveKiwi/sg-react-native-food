@@ -1,16 +1,15 @@
-// 90 created SearchScreen
-
+// 91 created SearchBar
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const SearchScreen = () => {
+const SearchBar = () => {
   return (
     <View>
-      <Text>Search Screen</Text>
+      <Text>SearchBar</Text>
     </View>
   );
 };
 
-export default SearchScreen;
+export default SearchBar;
 
 const styles = StyleSheet.create({});
