@@ -1,10 +1,13 @@
 // 91 created SearchBar
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 const SearchBar = () => {
   return (
     <View style={styles.background}>
+      {/* 93 added search icon */}
+      <Feather name="search" size={30} />
       <Text>SearchBar</Text>
     </View>
   );
