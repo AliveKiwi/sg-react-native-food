@@ -3,12 +3,20 @@ import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-const SearchBar = () => {
+// 96 destructuring { term, onTermChange } from prop
+const SearchBar = ({ term, onTermChange }) => {
   return (
     <View style={styles.backgroundStyle}>
       {/* 93 added search icon */}
       <Feather style={styles.iconStyle} name="search" size={30} />
-      <TextInput placeholder="Search" style={styles.inputStyle} />
+      <TextInput
+        placeholder="Search"
+        style={styles.inputStyle}
+        value={term} // 96 added
+        onChangeText={(newTerm) => onTermChange(newTerm)} // 96 added
+        autoCapitalize="none" // 96 added
+        autoCorrect={false} // 96 added
+      />
     </View>
   );
 };
