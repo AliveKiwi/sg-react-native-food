@@ -1,6 +1,6 @@
 // 90 created SearchScreen
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import SearchBar from '../components/SearchBar';
@@ -28,7 +28,6 @@ const SearchScreen = () => {
           location: 'san jose',
         },
       });
-
       // 99 storing response in results
       setResults(response.data.businesses);
     } catch (err) {
@@ -46,6 +45,11 @@ const SearchScreen = () => {
 
   // 101 Don't do it because in SearchApi, there is setResults, and everytime we call setResult, it cause searchApi to be called again because of component re-render on setState, meaning searchApi is in infinite loop write console.log() in searchApi to test
   // searchApi('pasta');
+
+  // 102 to prevent searchApi from being called infintely, this code runs only once
+  useEffect(() => {
+    searchApi('pasta');
+  }, []);
 
   return (
     <View>
