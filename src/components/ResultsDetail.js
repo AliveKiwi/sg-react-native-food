@@ -1,14 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
+import json from '../../console';
 
 const ResultsDetail = ({ result }) => {
   return (
     <View>
-      <Text>{result.name}</Text>
+      <Image style={styles.image} source={{ uri: result.image_url }} />
+      <Text style={styles.name}>{result.name}</Text>
+      <Text>
+        {result.rating} Stars, {result.review_count} Reviews
+      </Text>
     </View>
   );
 };
 
 export default ResultsDetail;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    width: 250,
+    height: 120,
+    borderRadius: 4,
+  },
+  name: {
+    fontWeight: 'bold',
+  },
+});
