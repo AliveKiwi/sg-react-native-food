@@ -17,13 +17,14 @@ const SearchScreen = () => {
   // 100 to store error message from catch block
   const [errorMessage, setErrorMessage] = useState('');
 
-  const searchApi = async () => {
+  // 101 added searchTerm as parameter
+  const searchApi = async (searchTerm) => {
     try {
       // 99 the params are automatically added to search url as query string like /search?limit=50
       const response = await yelp.get('/search', {
         params: {
           limit: 50,
-          term: term,
+          term: searchTerm,
           location: 'san jose',
         },
       });
@@ -43,13 +44,16 @@ const SearchScreen = () => {
   // const onTermChange = (term) => setTerm(term);
   // const onTermSubmit = () => searchApi(); // 97 added
 
+  // 101 Don't do it because in SearchApi, there is setResults, and everytime we call setResult, it cause searchApi to be called again because of component re-render on setState, meaning searchApi is in infinite loop write console.log() in searchApi to test
+  // searchApi('pasta');
+
   return (
     <View>
       {/* 92 added SearchBar */}
       <SearchBar
         term={term}
         onTermChange={setTerm} // 99 passing setTerm directly instead of onTermChange
-        onTermSubmit={searchApi} // 99 passing searchApi directly instead of onTermSubmit
+        onTermSubmit={() => searchApi(term)} // 99 passing searchApi directly instead of onTermSubmit
       />
       {/* 100 added */ errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
