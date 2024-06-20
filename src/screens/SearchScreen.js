@@ -16,7 +16,13 @@ const SearchScreen = () => {
   // 103 extracting the required data : Part 3
   const [searchApi, results, errorMessage] = useResults();
 
-  json(results);
+  // 105 filter results by price
+  const filterResultsByPrice = (price) => {
+    // price === '$' || '$$' || '$$$'
+    return results.filter((result) => {
+      return result.price === price;
+    });
+  };
 
   return (
     <View>
@@ -28,9 +34,9 @@ const SearchScreen = () => {
       />
       {/* 100 added */ errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
-      <ResultsList title="Cost Effective" />
-      <ResultsList title="Bit Pricier" />
-      <ResultsList title="Big Spender" />
+      <ResultsList results={filterResultsByPrice('$')} title="Cost Effective" />
+      <ResultsList results={filterResultsByPrice('$$')} title="Bit Pricier" />
+      <ResultsList results={filterResultsByPrice('$$$')} title="Big Spender" />
     </View>
   );
 };
