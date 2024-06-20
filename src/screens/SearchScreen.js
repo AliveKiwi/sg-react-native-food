@@ -11,7 +11,7 @@ const SearchScreen = () => {
 
   // 96 passed to SearchBar UC
   const onTermChange = (term) => setTerm(term);
-  const onTermSubmit = () => console.log(`term was submitted`);
+  const onTermSubmit = () => console.log(`term was submitted`); // 97 added
 
   return (
     <View>
@@ -19,7 +19,7 @@ const SearchScreen = () => {
       <SearchBar
         term={term}
         onTermChange={onTermChange}
-        onTermSubmit={onTermSubmit}
+        onTermSubmit={onTermSubmit} // 97 added
       />
       <Text>Search Screen</Text>
     </View>
