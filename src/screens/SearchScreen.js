@@ -14,18 +14,28 @@ const SearchScreen = () => {
   // 99 to store result of yelp api call
   const [results, setResults] = useState([]);
 
-  const searchApi = async () => {
-    // 99 the params are automatically added to search url as query string like /search?limit=50
-    const response = await yelp.get('/search', {
-      params: {
-        limit: 50,
-        term: term,
-        location: 'san jose',
-      },
-    });
+  // 100 to store error message from catch block
+  const [errorMessage, setErrorMessage] = useState('');
 
-    // 99 storing response in results
-    setResults(response.data.businesses);
+  const searchApi = async () => {
+    try {
+      // 99 the params are automatically added to search url as query string like /search?limit=50
+      const response = await yelp.get('/search', {
+        params: {
+          limit: 50,
+          term: term,
+          location: 'san jose',
+        },
+      });
+
+      // 99 storing response in results
+      setResults(response.data.businesses);
+    } catch (err) {
+      // console.log(err); // make sure to break the code to test
+      // console.log(typeof err); //=> object
+      // 100 setting errorMessage
+      setErrorMessage(err.message);
+    }
   };
 
   // 96 passed to SearchBar UC
@@ -41,7 +51,7 @@ const SearchScreen = () => {
         onTermChange={setTerm} // 99 passing setTerm directly instead of onTermChange
         onTermSubmit={searchApi} // 99 passing searchApi directly instead of onTermSubmit
       />
-      <Text>Search Screen</Text>
+      {/* 100 added */ errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
     </View>
   );
